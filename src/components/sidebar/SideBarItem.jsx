@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiFillCaretDown } from 'react-icons/ai'
-
+import { Link } from 'react-router-dom'
 
 
 function SideBarItem({ title, menuItem }) {
@@ -11,8 +11,10 @@ function SideBarItem({ title, menuItem }) {
                 <p className="font-bold">{title}</p>
             </div>
 
-            {menuItem.map(item => (
-                <p key={item.name} className="px-[1.5rem] py-1">{item.name}</p>
+            {menuItem.map(menu => (
+                <Link to={menu.path}>
+                    <p className="px-[1.5rem] cursor-pointer py-1">{menu.name}</p>
+                </Link>
             ))}
         </div>
     )

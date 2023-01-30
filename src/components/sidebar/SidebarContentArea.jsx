@@ -5,30 +5,30 @@ import SideBarItem from './SideBarItem'
 const usersMenuData = [
     {
         name: "Clients",
-        path: ""
+        path: "main/users/clients"
     },
     {
         name: "Riders",
-        path: ""
+        path: "main/users/riders",
     },
     {
         name: "Restaurants",
-        path: ""
+        path: "main/users/restaurants"
     },
     {
         name: "Orders",
-        path: ""
+        path: "main/users/orders"
     }
 ]
 
 const appMenuData = [
     {
         name: "Services",
-        path: ""
+        path: "main/app/services"
     },
     {
         name: "Jobs",
-        path: ""
+        path: "main/app/jobs"
     }
 ]
 
@@ -37,6 +37,7 @@ function SidebarContentArea() {
         <div className="h-screen">
             <SideBarItem title="Users" menuItem={usersMenuData} />
             <hr />
+            <SideBarItem title="App" menuItem={appMenuData} />
         </div>
     )
 }
