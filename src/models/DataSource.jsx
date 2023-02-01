@@ -3,11 +3,10 @@ const tableData = [
         key: '1',
         name: 'Mike',
         phone: +918787762697,
-        city: 'Agartala',
+        city: 'Kumilla',
         address: '10 Downing Street',
         orders: 10,
         orderHistory: "",
-        id: 1
 
     },
     {

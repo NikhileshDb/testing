@@ -1,6 +1,6 @@
 import React from 'react'
 import { AiOutlineSearch } from 'react-icons/ai'
-function PageHeader({ type, title }) {
+function PageHeader({ type, title, setSearchedText }) {
     return (
         <div className="w-full bg-white pt-10 pl-6 pr-[1.5rem]">
             <div className="flex flex-row items-center justify-between ">
@@ -9,7 +9,9 @@ function PageHeader({ type, title }) {
                 </div>
                 <div className="flex gap-1 items-center justify-center border px-2 rounded mr-[4rem]">
                     <AiOutlineSearch className="h-6 w-6 text-[#363636]" />
-                    <input className="border-none p-1 focus:outline-none" placeholder="Search" type="text" />
+                    <input onChange={(e) => {
+                        setSearchedText(e.target.value)
+                    }} className="border-none p-1 focus:outline-none" placeholder="Search" type="text" />
                 </div>
             </div>
             {/* Bread crumbs */}
@@ -30,7 +32,7 @@ function PageHeader({ type, title }) {
                         <option hidden value>Choose action</option>
                         <option>Example 2</option>
                     </select>
-                    <div className="bg-black rounded px-2 py-1 text-white">
+                    <div className="bg-black rounded cursor-pointer px-2 py-1 text-white">
                         Apply
                     </div>
                 </div>
