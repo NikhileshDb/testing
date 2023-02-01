@@ -1,7 +1,8 @@
 import React from 'react'
-import { AiFillCaretDown } from 'react-icons/ai'
 import SideBarItem from './SideBarItem'
-
+import UserCirclePlus from '../../assets/svg/UserCirclePlus'
+import IconButton from '../IconButton'
+import { AiOutlineSetting } from 'react-icons/ai'
 const usersMenuData = [
     {
         name: "Clients",
@@ -34,10 +35,18 @@ const appMenuData = [
 
 function SidebarContentArea() {
     return (
-        <div className="h-screen">
+        <div className="h-screen flex flex-col ">
             <SideBarItem title="Users" menuItem={usersMenuData} />
             <hr />
             <SideBarItem title="App" menuItem={appMenuData} />
+            <div className="px-[1.8rem] pl-[1.8rem] mb-10">
+                <IconButton icon={<UserCirclePlus />} title="Add" bgColor="black" />
+            </div>
+            <hr />
+            <div className="mt-8 flex justify-end items-center pr-[1.8rem]">
+                <AiOutlineSetting className="w-6 h-6 cursor-pointer" />
+            </div>
+
         </div>
     )
 }
