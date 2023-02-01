@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
-import ErrorScreen from '../components/ErrorScreen';
+import ErrorScreen from '../pages/ErrorScreen';
 import SplitScreen from '../layout/SplitScreen'
-import Clients from '../pages/clients/Clients';
+import { Clients, loader as clientsLoader } from '../pages/clients/Clients';
 import Jobs from '../pages/jobs/Jobs';
 import Orders from '../pages/orders/Orders';
 import Restaurants from '../pages/restaurents/Restaurants';
@@ -17,6 +17,7 @@ export const Router = createBrowserRouter([
             {
                 path: 'main/users/clients',
                 element: <Clients />,
+                loader: clientsLoader,
             },
             {
                 path: 'main/users/riders',

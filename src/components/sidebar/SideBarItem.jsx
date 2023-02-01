@@ -12,7 +12,7 @@ function SideBarItem({ title, menuItem }) {
             </div>
 
             {menuItem.map(menu => (
-                <Link to={menu.path}>
+                <Link key={menu.name} to={menu.path}>
                     <p className="px-[1.5rem] cursor-pointer py-1">{menu.name}</p>
                 </Link>
             ))}

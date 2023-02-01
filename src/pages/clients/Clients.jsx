@@ -1,43 +1,88 @@
-import React from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
-function Clients() {
-    return (
-        <div className="h-screen w-full bg-white pt-10 pl-6 pr-[1.5rem]">
-            <div className="flex flex-row items-center justify-between ">
-                <div className="text-2xl font-bold">
-                    Clients
-                </div>
-                <div className="flex gap-1 items-center justify-center border px-2 rounded mr-[4rem]">
-                    <AiOutlineSearch className="h-6 w-6 text-[#363636]" />
-                    <input className="border-none p-1 focus:outline-none" placeholder="Search" type="text" />
-                </div>
-            </div>
-            {/* Bread crumbs */}
-            <div className="flex flex-row items-center justify-between mt-4">
-                <div className="flex flex-row">
-                    <div className="pr-1">main</div>
-                    <div className="pr-1">/</div>
-                    <div className="pr-1">Users</div>
-                    <div className="pr-1">/</div>
-                    <div className="pr-1">Clients</div>
-                </div>
-                <div className='flex flex-row items-center gap-2'>
-                    <select placeholder="Filter" className="px-2 py-1 border rounded focus:outline-none bg-white w-[12rem]" type="text" >
-                        <option hidden value>Filter</option>
-                        <option>Example 2</option>
-                    </select>
-                    <select placeholder="Choose action" className="px-2 py-1 border rounded focus:outline-none bg-white w-[12rem]" type="text" >
-                        <option hidden value>Choose action</option>
-                        <option>Example 2</option>
-                    </select>
-                    <div className="bg-black rounded px-2 py-1 text-white">
-                        Apply
-                    </div>
-                </div>
-            </div>
+import React, { useState } from 'react'
+import PageHeader from '../../components/PageHeader'
+import { getClients } from '../../models/Operations'
+import { useLoaderData } from 'react-router-dom'
+import { Table } from 'antd'
+import { Link } from 'react-router-dom'
+import { AiOutlineRight, AiOutlineEye } from 'react-icons/ai'
 
-        </div>
+const columns = [
+    {
+        title: 'Name',
+        dataIndex: 'name',
+        key: 'name',
+        sorter: (a, b) => a.name.length - b.name.length,
+        sortDirections: ['descend']
+    },
+    {
+        title: 'Phone',
+        dataIndex: 'phone',
+        key: 'phone',
+        sorter: (a, b) => a.name.length - b.name.length,
+        sortDirections: ['descend']
+    },
+    {
+        title: 'City',
+        dataIndex: 'city',
+        key: 'city',
+        sorter: (a, b) => a.name.length - b.name.length,
+        sortDirections: ['descend']
+    },
+    {
+        title: 'Address',
+        dataIndex: 'address',
+        key: 'address',
+        sorter: (a, b) => a.name.length - b.name.length,
+        sortDirections: ['descend']
+    },
+    {
+        title: 'Ordres',
+        dataIndex: 'orders',
+        key: 'orders',
+        sorter: (a, b) => a.name.length - b.name.length,
+        sortDirections: ['descend']
+    },
+    {
+        title: 'Order History',
+        dataIndex: 'order history',
+        key: 'order history',
+        render: (_, record) => (
+            <Link to={""}>
+                <div className="flex flex-row items-center justify-between w-[4rem]">
+                    <div>View</div>
+                    <AiOutlineRight />
+                </div>
+
+            </Link>
+        )
+    },
+    {
+        title: '',
+        dataIndex: 'view',
+        key: 'view',
+        render: (_, record) => (
+            <Link to={""}>
+                <AiOutlineEye className="h-4 w-4" />
+            </Link>
+        )
+
+    },
+];
+
+
+async function loader() {
+    const clients = await getClients()
+    return { clients }
+}
+
+function Clients() {
+    const { clients } = useLoaderData()
+    return (
+        <>
+            <PageHeader type="Users" title="Clients" />
+            <Table rowSelection={{ type: 'checkbox' }} dataSource={clients} columns={columns} />
+        </>
     )
 }
 
-export default Clients
+export { Clients, loader }
