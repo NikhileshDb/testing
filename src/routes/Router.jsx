@@ -5,7 +5,7 @@ import { Clients, loader as clientsLoader } from '../pages/clients/Clients';
 import Jobs from '../pages/jobs/Jobs';
 import Orders from '../pages/orders/Orders';
 import Restaurants from '../pages/restaurents/Restaurants';
-import Riders from '../pages/riders/Riders';
+import { Riders, loader as ridersLoader } from '../pages/riders/Riders';
 import Services from '../pages/services/Services';
 
 export const Router = createBrowserRouter([
@@ -22,6 +22,7 @@ export const Router = createBrowserRouter([
             {
                 path: 'main/users/riders',
                 element: <Riders />,
+                loader: ridersLoader,
             },
             {
                 path: 'main/users/restaurants',
