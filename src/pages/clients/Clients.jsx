@@ -5,7 +5,7 @@ import { useLoaderData } from 'react-router-dom'
 import { Table } from 'antd'
 import { Link } from 'react-router-dom'
 import { AiOutlineRight, AiOutlineEye } from 'react-icons/ai'
-
+import Modal from '../../components/Modal'
 
 async function loader() {
     const clients = await getClients()
@@ -15,6 +15,7 @@ async function loader() {
 function Clients() {
     const { clients } = useLoaderData();
     const [searchedText, setSearchedText] = useState("");
+    const [shouldShowModal, setShouldShowModal] = useState(false);
 
 
     const columns = [
@@ -65,13 +66,12 @@ function Clients() {
             dataIndex: 'order history',
             key: 'order history',
             render: (_, record) => (
-                <Link to={""}>
+                <div onClick={() => setShouldShowModal(true)} className="cursor-pointer hover:text-blue-400">
                     <div className="flex flex-row items-center justify-between w-[4rem]">
                         <div>View</div>
                         <AiOutlineRight />
                     </div>
-
-                </Link>
+                </div>
             )
         },
         {
@@ -88,10 +88,13 @@ function Clients() {
     ];
 
     return (
-        <>
+        <div className="">
             <PageHeader type="Users" title="Clients" setSearchedText={setSearchedText} />
             <Table rowSelection={{ type: 'checkbox' }} dataSource={clients} columns={columns} />
-        </>
+            <Modal shouldShow={shouldShowModal} onClose={() => setShouldShowModal(false)}>
+                <div>Hello, Detail View</div>
+            </Modal>
+        </div>
     )
 }
 
