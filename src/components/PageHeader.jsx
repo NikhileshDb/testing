@@ -1,6 +1,12 @@
-import React from 'react'
-import { AiOutlineSearch } from 'react-icons/ai'
+import React, { useState } from 'react'
+import { AiOutlineSearch, AiFillCaretDown } from 'react-icons/ai'
+import CheckOutSideClick from './CheckOutsideClick'
+import FilterModal from './FilterModal'
 function PageHeader({ type, title, setSearchedText }) {
+    const [openFilter, setOpenFilter] = useState(false);
+    const handleOpenFilter = () => {
+        setOpenFilter(false)
+    }
     return (
         <div className="w-full bg-white pt-10 pl-6 pr-[1.5rem]">
             <div className="flex flex-row items-center justify-between ">
@@ -23,19 +29,25 @@ function PageHeader({ type, title, setSearchedText }) {
                     <div className="pr-1">/</div>
                     <div className="pr-1">{title}</div>
                 </div>
-                <div className='flex flex-row items-center gap-2'>
-                    <select placeholder="Filter" className="px-2 py-1 border rounded focus:outline-none bg-white w-[12rem]" type="text" >
-                        <option hidden value>Filter</option>
-                        <option>Example 2</option>
-                    </select>
-                    <select placeholder="Choose action" className="px-2 py-1 border rounded focus:outline-none bg-white w-[12rem]" type="text" >
-                        <option hidden value>Choose action</option>
-                        <option>Example 2</option>
-                    </select>
+                <div className='flex flex-row items-center gap-2 relative'>
+                    <div onClick={() => setOpenFilter(!openFilter)} placeholder="Filter" className="flex flex-row items-center justify-between cursor-pointer px-2 py-1 border rounded  bg-white w-[12rem]" type="text" >
+                        <div>Filter</div>
+                        <AiFillCaretDown />
+                    </div>
+                    <div placeholder="Filter" className="flex flex-row items-center justify-between cursor-pointer px-2 py-1 border rounded  bg-white w-[12rem]" type="text" >
+                        <div>Choose action</div>
+                        <AiFillCaretDown />
+                    </div>
                     <div className="bg-black rounded cursor-pointer px-2 py-1 text-white">
                         Apply
                     </div>
+                    <div className="absolute top-0 left-0 z-10">
+                        <CheckOutSideClick onClickOutside={handleOpenFilter} >
+                            <FilterModal open={openFilter} />
+                        </CheckOutSideClick>
+                    </div>
                 </div>
+
             </div>
         </div>
     )
