@@ -45,7 +45,7 @@ function SidebarContentArea() {
             <SideBarItem title="App" menuItem={appMenuData} />
             <div className="px-[1.8rem] pl-[1.8rem] mb-10 relative">
                 <IconButton onClick={() => setShowAdd(!showAdd)} icon={<UserCirclePlus />} title="Add" bgColor="black" />
-                <div className={`${showAdd ? "" : "hidden"} flex flex-col justify-start bg-red-300 items-start absolute right-[-66%] top-0 h-auto w-[12rem] shadow-2xl rounded-lg`}>
+                <div className={`${showAdd ? "" : "hidden"} px-[1.8rem] pl-[1.8rem]  flex flex-col justify-start bg-red-300 items-start absolute top-0 right-0 h-auto w-full shadow-2xl rounded-lg`}>
                     <div className="bg-white px-[0.6rem] cursor-pointer py-2 border border-b-[#cfcfcf] w-full">User</div>
                     <div className="bg-white px-[0.6rem] cursor-pointer py-2 border border-b-[#cfcfcf] w-full">Translator</div>
                     <div className="bg-white px-[0.6rem] cursor-pointer py-2 border border-b-[#cfcfcf] w-full">Theme</div>
