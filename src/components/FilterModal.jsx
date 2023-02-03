@@ -1,6 +1,6 @@
 import React from 'react'
 
-function FilterModal({ open }) {
+function FilterModal({ open, setOpen }) {
     return (
         <div className={`${open ? "" : "hidden"} py-1  bg-white rounded-lg flex flex-col w-[16rem] shadow-2xl`}>
             <div className="px-2 py-1">Filter</div>
@@ -33,8 +33,8 @@ function FilterModal({ open }) {
                 </div>
             </div>
             <div className="flex flex-row gap-2 justify-end items-center px-2 py-1 border border-t-[#cacaca] border-b-0">
-                <div className="px-2 py-1 border rounded-lg">Cancel</div>
-                <div className="px-2 py-1 border bg-blue-700 rounded-lg text-white cursor-pointer">Apply</div>
+                <div onClick={setOpen} className="hover:bg-gray-300 px-2 py-1 border rounded-lg cursor-pointer">Cancel</div>
+                <div className="px-2 py-1 border bg-blue-700 hover:bg-blue-900 rounded-lg text-white cursor-pointer">Apply</div>
             </div>
         </div>
     )

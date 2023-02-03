@@ -4,7 +4,7 @@ import { getClients } from '../../models/Operations'
 import { useLoaderData } from 'react-router-dom'
 import { Table } from 'antd'
 import { Link } from 'react-router-dom'
-import { AiOutlineRight, AiOutlineEye } from 'react-icons/ai'
+import { AiOutlineRight, AiOutlineEye, AiOutlineArrowRight } from 'react-icons/ai'
 import Modal from '../../components/Modal'
 
 async function loader() {
@@ -16,8 +16,12 @@ function Clients() {
     const { clients } = useLoaderData();
     const [searchedText, setSearchedText] = useState("");
     const [shouldShowModal, setShouldShowModal] = useState(false);
-
-
+    const [record, setRecord] = useState(null)
+    const handleShouldShow = (record) => {
+        setShouldShowModal(true)
+        setRecord(record)
+        console.log(record)
+    }
     const columns = [
         {
             title: 'Name',
@@ -66,7 +70,7 @@ function Clients() {
             dataIndex: 'order history',
             key: 'order history',
             render: (_, record) => (
-                <div onClick={() => setShouldShowModal(true)} className="cursor-pointer hover:text-blue-400">
+                <div onClick={() => handleShouldShow(record)} className="cursor-pointer hover:text-blue-400">
                     <div className="flex flex-row items-center justify-between w-[4rem]">
                         <div>View</div>
                         <AiOutlineRight />
@@ -91,9 +95,63 @@ function Clients() {
         <div className="">
             <PageHeader type="Users" title="Clients" setSearchedText={setSearchedText} />
             <Table rowSelection={{ type: 'checkbox' }} dataSource={clients} columns={columns} />
-            <Modal shouldShow={shouldShowModal} onClose={() => setShouldShowModal(false)}>
-                <div>Hello, Detail View</div>
-            </Modal>
+            {
+                record == null ?
+                    null :
+                    <Modal shouldShow={shouldShowModal} onClose={() => setShouldShowModal(false)}>
+                        {/* Modal Header */}
+                        <div className="bg-gray-400 flex justify-between">
+                            <div className="h-[10rem] w-[10rem] bg-gray-700">
+                            </div>
+                            <div>
+                                <div className="bg-white cursor-pointer rounded flex flex-row items-center justify-between gap-4 px-3 py-1 mr-4 mt-4">
+                                    <div>Edit account</div>
+                                    <AiOutlineArrowRight />
+                                </div>
+                            </div>
+                        </div>
+                        {/*Modal Body */}
+                        <div className="w-full h-full flex flex-row justify-between px-2 py-2">
+                            <div className="font-bold text-[1.2rem]">
+                                {record.name}
+                            </div>
+                            <div className="w-[10rem] bg-white flex flex-col justify-evenly gap-2">
+                                <div className="">
+                                    <div className="font-[500] text-[1rem]">
+                                        Phone:
+                                    </div>
+                                    <div>
+                                        {record.phone}
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="font-[500] text-[1rem]">
+                                        City:
+                                    </div>
+                                    <div>
+                                        {record.city}
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="font-[500] text-[1rem]">
+                                        Address:
+                                    </div>
+                                    <div>
+                                        {record.address}
+                                    </div>
+                                </div>
+                                <div className="">
+                                    <div className="font-[500] text-[1rem]">
+                                        Orders:
+                                    </div>
+                                    <div>
+                                        {record.orders}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </Modal>
+            }
         </div>
     )
 }

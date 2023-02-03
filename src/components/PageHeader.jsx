@@ -43,7 +43,7 @@ function PageHeader({ type, title, setSearchedText }) {
                     </div>
                     <div className="absolute top-0 left-0 z-10">
                         <CheckOutSideClick onClickOutside={handleOpenFilter} >
-                            <FilterModal open={openFilter} />
+                            <FilterModal open={openFilter} setOpen={handleOpenFilter} />
                         </CheckOutSideClick>
                     </div>
                 </div>
