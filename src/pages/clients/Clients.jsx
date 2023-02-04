@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import PageHeader from '../../components/PageHeader'
 import { getClients } from '../../models/Operations'
-import { useLoaderData } from 'react-router-dom'
+import { Form, useLoaderData } from 'react-router-dom'
 import { Table } from 'antd'
-import { Link } from 'react-router-dom'
 import { AiOutlineRight, AiOutlineEye, AiOutlineArrowRight } from 'react-icons/ai'
 import Modal from '../../components/Modal'
 
@@ -70,7 +69,7 @@ function Clients() {
             dataIndex: 'order history',
             key: 'order history',
             render: (_, record) => (
-                <div onClick={() => handleShouldShow(record)} className="cursor-pointer hover:text-blue-400">
+                <div className="cursor-pointer hover:text-blue-400">
                     <div className="flex flex-row items-center justify-between w-[4rem]">
                         <div>View</div>
                         <AiOutlineRight />
@@ -83,9 +82,9 @@ function Clients() {
             dataIndex: 'view',
             key: 'view',
             render: (_, record) => (
-                <Link to={""}>
+                <div onClick={() => handleShouldShow(record)} className="cursor-pointer hover:text-blue-400">
                     <AiOutlineEye className="h-4 w-4" />
-                </Link>
+                </div>
             )
 
         },
@@ -93,7 +92,7 @@ function Clients() {
 
     return (
         <div className="">
-            <PageHeader type="Users" title="Clients" setSearchedText={setSearchedText} />
+            <PageHeader title="Clients" showSearch={true} showFilters={true} setSearchedText={setSearchedText} />
             <Table rowSelection={{ type: 'checkbox' }} dataSource={clients} columns={columns} />
             {
                 record == null ?
@@ -104,10 +103,12 @@ function Clients() {
                             <div className="h-[10rem] w-[10rem] bg-gray-700">
                             </div>
                             <div>
-                                <div className="bg-white cursor-pointer rounded flex flex-row items-center justify-between gap-4 px-3 py-1 mr-4 mt-4">
-                                    <div>Edit account</div>
-                                    <AiOutlineArrowRight />
-                                </div>
+                                <Form action={`${record.name}/edit`}>
+                                    <button type="submit" className="bg-white cursor-pointer rounded flex flex-row items-center justify-between gap-4 px-3 py-1 mr-4 mt-4">
+                                        <div>Edit account</div>
+                                        <AiOutlineArrowRight />
+                                    </button>
+                                </Form>
                             </div>
                         </div>
                         {/*Modal Body */}

@@ -89,7 +89,7 @@ function Riders() {
 
     return (
         <div>
-            <PageHeader type="Users" title="Riders" setSearchedText={setSearchedText} />
+            <PageHeader title="Riders" setSearchedText={setSearchedText} />
             <Table rowSelection={{ type: 'checkbox' }} dataSource={riders} columns={columns} />
         </div>
     )

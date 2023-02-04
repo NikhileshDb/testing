@@ -3,14 +3,14 @@ import { useQuery, gql } from '@apollo/client';
 
 
 
-const COUNTRY_Query = [{
+// const COUNTRY_Query = [{
 
-}]
+// }]
 
 
 async function loader() {
-    const response = await useQuery();
-    return { response }
+    // const response = await useQuery();
+    return {}
 }
 
 function Orders() {
